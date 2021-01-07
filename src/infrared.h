@@ -71,7 +71,7 @@ namespace infrared {
 
         if(irrecv.decode(&results))
         {
-            auto preMillis = millis();
+            // auto preMillis = millis();
             auto signal = results.value;
             Serial.println(signal);
             irrecv.resume();

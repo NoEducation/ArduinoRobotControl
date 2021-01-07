@@ -21,23 +21,34 @@ namespace movement {
     #define IN3 9 // right back
     #define IN4 11 // right front
 
-    char carSpeed = 125;
+    int carSpeed = 125;
+    int factor = 25;
+    int delay = 20;
 
-    void setCarSpeed(char newSpeed){
+    // void setDelay(){
+    //     delay()
+    // }
+
+
+    void setCarSpeed(int newSpeed){
         if(newSpeed > 0){
             carSpeed = newSpeed;
         }
     }
 
     void reduceSpeed(){
-        if( (carSpeed - 5) > 0){
-            carSpeed-=5;
+        if( (carSpeed - factor) > 50){
+            carSpeed-=factor;
+            analogWrite(ENA, carSpeed);
+            analogWrite(ENB, carSpeed);
         }
     }
 
     void increaseSpeed(){
-        if ((carSpeed + 5) < 255){
-            carSpeed+=5;
+        if ((carSpeed + factor) < 255){
+            carSpeed+=factor;
+            analogWrite(ENA, carSpeed);
+            analogWrite(ENB, carSpeed);
         }
     }
 
@@ -48,7 +59,7 @@ namespace movement {
         pinMode(IN4, OUTPUT);
         pinMode(ENA, OUTPUT);
         pinMode(ENB, OUTPUT);
-        setCarSpeed(125);
+        setCarSpeed(carSpeed);
     }
 
 
